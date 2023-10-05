@@ -1,5 +1,7 @@
 const express = require('express')
 const {
+  getWorkouts,
+  getWorkout,
   createWorkout
 } = require('../controllers/workoutController')
 
