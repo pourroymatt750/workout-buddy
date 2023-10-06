@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
+import { useWorkoutContext } from '../hooks/useWorkoutsContext'
 
 // components
 import WorkoutDetails from '../components/WorkoutDetails'
 import WorkoutForm from "../components/WorkoutFrom"
 
 const Home = () => {
-  const [workouts, setWorkouts] = useState(null)
+  const {workouts, dispatch} = useWorkoutContext()
 
   useEffect(() => {
     const fetchWorkouts = async () => {
@@ -15,7 +16,7 @@ const Home = () => {
           throw new Error('Network response was not okay')
         }
         const json = await response.json()
-        setWorkouts(json)
+        dispatch({type: 'SET_WORKOUTS',  payload: json})
       } catch (error) {
         console.log('Error fetching workouts: ', error)
       }
