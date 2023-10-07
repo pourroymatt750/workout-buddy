@@ -23,29 +23,28 @@ const WorkoutDetails = ({ workout }) => {
   const handleUpdateClick = () => {
     setIsUpdating(true);
   };
-
-  const handleUpdate = (updatedWorkoutData) => {
+  
+  const handleUpdate = async (updatedWorkoutData) => {
     setIsUpdating(false);
+    console.log("(WorkoutDetails handleUpdate) Dispatching UPDATE_WORKOUT with payload:", updatedWorkoutData);
     dispatch({ type: 'UPDATE_WORKOUT', payload: updatedWorkoutData });
   };
-
-
+  
   return (
     <div className="workout-details">
-    <h4>{workout.title}</h4>
-    <p><strong>Load: </strong>{workout.load}</p>
-    <p><strong>Reps: </strong>{workout.reps}</p>
-    {/* Render other workout details here */}
-    {isUpdating ? (
-      <WorkoutUpdate workout={workout} onUpdate={handleUpdate} />
-    ) : (
-      <>
-        <p>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p>
-        <span className='material-symbols-outlined' onClick={handleClick}>delete</span>
-        <button className='update-btn' onClick={handleUpdateClick}>Update</button>
-      </>
-    )}
-  </div>
+      <h4>{workout.title}</h4>
+      <p><strong>Load: </strong>{workout.load}</p>
+      <p><strong>Reps: </strong>{workout.reps}</p>
+      {isUpdating ? (
+        <WorkoutUpdate workout={workout} onUpdate={handleUpdate} />
+      ) : (
+        <>
+          <p>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p>
+          <span className='material-symbols-outlined' onClick={handleClick}>delete</span>
+          <button className='update-btn' onClick={handleUpdateClick}>Update</button>
+        </>
+      )}
+    </div>
   )
 }
 

@@ -24,13 +24,13 @@ const Home = () => {
     fetchWorkouts()
   }, [dispatch])
 
-  const handleUpdate = (updatedWorkout) => {
+  const handleUpdate = (updatedWorkoutData) => {
     // Update the local state with the updated workout
     const updatedWorkouts = workouts.map((workout) =>
-      workout._id === updatedWorkout._id ? updatedWorkout : workout
+      workout._id === updatedWorkoutData._id ? updatedWorkoutData : workout,
     );
     dispatch({ type: 'SET_WORKOUTS', payload: updatedWorkouts });
-  };
+  }
 
   return (
     <div className="home">

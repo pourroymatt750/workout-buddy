@@ -16,6 +16,8 @@ const WorkoutUpdate = ({ workout, onUpdate }) => {
     e.preventDefault();
 
     try {
+      console.log(`(WorkoutUpdate handleSubmit) updatedWorkout: ${updatedWorkout.load}`)
+
       const response = await fetch('/api/workouts/' + workout._id,{
         method: 'PATCH',
         headers: {
@@ -24,11 +26,8 @@ const WorkoutUpdate = ({ workout, onUpdate }) => {
         body: JSON.stringify(updatedWorkout)
       })
 
-      console.log('Response status:', response.status)
-
       if (!response.ok) {
         const errorText = await response.text()
-        console.error('Error response:', errorText)
         throw new Error('Network response was not okay')
       }
         
@@ -71,3 +70,4 @@ const WorkoutUpdate = ({ workout, onUpdate }) => {
 }
 
 export default WorkoutUpdate
+
