@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Alert from 'react-bootstrap/Alert';
-import Button from 'react-bootstrap/Button';
 
 function CancelAlert({ isUpdating, setIsUpdating, isCancelAlertVisible, setIsCancelAlertVisible }) {
   const [show, setShow] = useState(true);
@@ -18,17 +17,16 @@ function CancelAlert({ isUpdating, setIsUpdating, isCancelAlertVisible, setIsCan
 
   if (show) {
     return (
-      <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+      <Alert variant="warning" onClose={() => setShow(false)} dismissible>
         <Alert.Heading>Cancel Alert</Alert.Heading>
         <p>
           Are you sure you want to cancel? All changes will be lost.
         </p>
-        <Button onClick={handleNo} >No</Button>
-        <Button onClick={handleYes}>Yes</Button>
+        <button id="cancel-no-btn" onClick={handleNo} >No</button>
+        <button id="cancel-yes-btn" onClick={handleYes}>Yes</button>
       </Alert>
-    );
+    )
   }
-  // return <Button onClick={() => setShow(true)}>Show Alert</Button>;
 }
 
 export default CancelAlert

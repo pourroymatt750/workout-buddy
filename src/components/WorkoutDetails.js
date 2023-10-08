@@ -1,6 +1,7 @@
 import { useWorkoutsContext } from '../hooks/useWorkoutsContext'
 import React, { useState } from 'react'
 import CancelAlert from './CancelAlert'
+import DeleteAlert from './DeleteAlert'
 
 // date fns
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
@@ -14,6 +15,7 @@ const WorkoutDetails = ({ workout, onUpdate }) => {
     reps: workout.reps
   })
   const [isCancelAlertVisible, setIsCancelAlertVisible] = useState(false)
+  const [isDeleteAlertVisible, setIsDeleteAlertVisible] = useState(false)
 
   const handleDeleteClick = async () => {
     const response = await fetch('/api/workouts/' + workout._id, {
@@ -104,6 +106,7 @@ const WorkoutDetails = ({ workout, onUpdate }) => {
       ) : (
         <>
           <p>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p>
+          {isDeleteAlertVisible && <DeleteAlert />}
           <span className='material-symbols-outlined' onClick={handleDeleteClick}>delete</span>
           <button className='update-btn' onClick={handleUpdateClick}>Update</button>
         </>
