@@ -34,7 +34,7 @@ const WorkoutDetails = ({ workout, onUpdate }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
-    setUpdatedWorkout({ ...updatedWorkout, [name]: value })
+    setUpdatedWorkout({ ...workout, [name]: value })
   }
 
   const handleUpdateSubmit = async (e) => {
@@ -65,40 +65,40 @@ const WorkoutDetails = ({ workout, onUpdate }) => {
 
   return (
     <div className="workout-details">
-      <h4>{updatedWorkout.title}</h4>
-      <p><strong>Load: </strong>{updatedWorkout.load}</p>
-      <p><strong>Reps: </strong>{updatedWorkout.reps}</p>
+      <h4>{workout.title}</h4>
+      <p><strong>Load: </strong>{workout.load}</p>
+      <p><strong>Reps: </strong>{workout.reps}</p>
       {isUpdating ? (
         <form onSubmit={handleUpdateSubmit}>
-        <label htmlFor="title">Title:</label>
-        <input
-          type="text"
-          id="title"
-          name="title"
-          value={updatedWorkout.title}
-          onChange={handleInputChange}
-        />
-        <label htmlFor="load">Load:</label>
-        <input
-          type="text"
-          id="load"
-          name="load"
-          value={updatedWorkout.load}
-          onChange={handleInputChange}
-        />
-        <label htmlFor="reps">Reps:</label>
-        <input
-          type="text"
-          id="reps"
-          name="reps"
-          value={updatedWorkout.reps}
-          onChange={handleInputChange}
-        />
-        <button id="cancel" type="button" onClick={handleCancelClick}>
-          Cancel
-        </button>
-        <button type="submit">Update</button>
-      </form>
+          <label htmlFor="title">Title:</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            value={updatedWorkout.title}
+            onChange={handleInputChange}
+          />
+          <label htmlFor="load">Load:</label>
+          <input
+            type="text"
+            id="load"
+            name="load"
+            value={updatedWorkout.load}
+            onChange={handleInputChange}
+          />
+          <label htmlFor="reps">Reps:</label>
+          <input
+            type="text"
+            id="reps"
+            name="reps"
+            value={updatedWorkout.reps}
+            onChange={handleInputChange}
+          />
+          <button id="cancel" type="button" onClick={handleCancelClick}>
+            Cancel
+          </button>
+          <button type="submit">Update</button>
+        </form>
       ) : (
         <>
           <p>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p>
