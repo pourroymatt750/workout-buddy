@@ -25,7 +25,6 @@ const Home = () => {
   }, [dispatch])
 
   const handleUpdateSubmit = (updatedWorkoutData) => {
-    console.log(updatedWorkoutData)
     // Update the local state with the updated workout
     const updatedWorkouts = workouts.map((workout) =>
       workout._id === updatedWorkoutData._id ? updatedWorkoutData : workout,

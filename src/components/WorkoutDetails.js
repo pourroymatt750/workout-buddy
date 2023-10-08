@@ -25,8 +25,12 @@ const WorkoutDetails = ({ workout, onUpdate }) => {
   }
 
   const handleUpdateClick = () => {
-    setIsUpdating(true);
-  };
+    setIsUpdating(true)
+  }
+
+  const handleCancelClick = () => {
+    setIsUpdating(false)
+  }
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -90,7 +94,10 @@ const WorkoutDetails = ({ workout, onUpdate }) => {
           value={updatedWorkout.reps}
           onChange={handleInputChange}
         />
-        <button type="submit">Update Workout</button>
+        <button id="cancel" type="button" onClick={handleCancelClick}>
+          Cancel
+        </button>
+        <button type="submit">Update</button>
       </form>
       ) : (
         <>
