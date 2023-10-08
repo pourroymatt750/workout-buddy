@@ -24,7 +24,8 @@ const Home = () => {
     fetchWorkouts()
   }, [dispatch])
 
-  const handleUpdate = (updatedWorkoutData) => {
+  const handleUpdateSubmit = (updatedWorkoutData) => {
+    console.log(updatedWorkoutData)
     // Update the local state with the updated workout
     const updatedWorkouts = workouts.map((workout) =>
       workout._id === updatedWorkoutData._id ? updatedWorkoutData : workout,
@@ -40,7 +41,7 @@ const Home = () => {
             <WorkoutDetails
               key={workout._id}
               workout={workout}
-              onUpdate={handleUpdate} // Pass the update handler to WorkoutDetails
+              onUpdate={handleUpdateSubmit} // Pass the update handler to WorkoutDetails
             />
           ))}
       </div>
