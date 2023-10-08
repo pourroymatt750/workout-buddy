@@ -76,7 +76,7 @@ header a {
   background: #f1f1f1;
   padding: 6px;
   border-radius: 50%;
-  color: #333;
+  color: var(--error);
 }
 
 /* new workout form */

@@ -1,5 +1,6 @@
 import { useWorkoutsContext } from '../hooks/useWorkoutsContext'
-import React, { useState } from 'react';
+import React, { useState } from 'react'
+import CancelAlert from './CancelAlert'
 
 // date fns
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
@@ -12,6 +13,7 @@ const WorkoutDetails = ({ workout, onUpdate }) => {
     load: workout.load,
     reps: workout.reps
   })
+  const [isCancelAlertVisible, setIsCancelAlertVisible] = useState(false)
 
   const handleDeleteClick = async () => {
     const response = await fetch('/api/workouts/' + workout._id, {
@@ -29,7 +31,7 @@ const WorkoutDetails = ({ workout, onUpdate }) => {
   }
 
   const handleCancelClick = () => {
-    setIsUpdating(false)
+    setIsCancelAlertVisible(true)
   }
 
   const handleInputChange = (e) => {
@@ -61,7 +63,6 @@ const WorkoutDetails = ({ workout, onUpdate }) => {
       console.log('Error updating workout: ', error);
     }
   };
-  
 
   return (
     <div className="workout-details">
@@ -94,6 +95,7 @@ const WorkoutDetails = ({ workout, onUpdate }) => {
             value={updatedWorkout.reps}
             onChange={handleInputChange}
           />
+          {isCancelAlertVisible && <CancelAlert isUpdating={isUpdating} setIsUpdating={setIsUpdating} isCancelAlertVisible={isCancelAlertVisible} setIsCancelAlertVisible={setIsCancelAlertVisible} />}
           <button id="cancel" type="button" onClick={handleCancelClick}>
             Cancel
           </button>
