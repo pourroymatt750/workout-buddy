@@ -18,9 +18,12 @@ const Home = () => {
         const json = await response.json()
         dispatch({ type: 'SET_WORKOUTS', payload: json })
       } catch (error) {
-        console.log('Error fetching workouts: ', error.message)
-        const responseText = await response.text()
-        console.log('Response:', responseText)
+        // console.log('Error fetching workouts: ', error.message)
+        if (error instanceof TypeError && error.message === "Failed to fetch") {
+          console.log('Network error:', error.message);
+        } else {
+          console.log('Error fetching workouts:', error.message);
+        }
       }
     }
     fetchWorkouts()
