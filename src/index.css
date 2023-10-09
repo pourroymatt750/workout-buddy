@@ -82,6 +82,7 @@ header a {
 /* new workout form */
 label, input {
   display: block;
+  font-size: 115%;
 }
 input {
   padding: 10px;
@@ -132,7 +133,7 @@ input.error {
 /* Cancel Alert buttons */
 #cancel-no-btn {
   background: #007bff;
-  color: #ffffff;
+  color: white;
   border: 0;
   padding-left: 2%;
   padding-right: 2%;
@@ -155,4 +156,53 @@ input.error {
   font-family: "Poppins";
   border-radius: 7px;
   cursor: pointer;
+}
+
+/* Delete Alert Buttons */
+#delete-no-btn {
+  background: #007bff;
+  color: white;
+  border: 0;
+  padding-left: 1.75%;
+  padding-right: 1.75%;
+  padding-top: .75%;
+  padding-bottom: .75%;
+  margin-right: 5%;
+  margin-top: 2.5%;
+  font-size: 1em;
+  font-family: "Poppins";
+  border-radius: 7px;
+  cursor: pointer;
+}
+#delete-yes-btn {
+  background: var(--error);
+  color: #fff;
+  border: 0;
+  padding-left: 1.75%;
+  padding-right: 1.75%;
+  padding-top: .75%;
+  padding-bottom: .75%;
+  margin-right: 5%;
+  margin-top: 2.5%;
+  font-size: 1em;
+  font-family: "Poppins";
+  border-radius: 7px;
+  cursor: pointer;
+}
+#delete-no-btn:hover, #delete-yes-btn:hover {
+  opacity: .7;
+}
+
+/* Workout Card */
+#card-title {
+  font-size: 125%;
+}
+#card-load {
+  font-size: 110%;
+}
+#card-reps {
+  font-size: 110%;
+}
+#card-created {
+  font-size: 110%;
 }

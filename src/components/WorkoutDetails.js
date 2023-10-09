@@ -61,9 +61,9 @@ const WorkoutDetails = ({ workout, onUpdate }) => {
 
   return (
     <div className="workout-details">
-      <h4>{workout.title}</h4>
-      <p><strong>Load: </strong>{workout.load}</p>
-      <p><strong>Reps: </strong>{workout.reps}</p>
+      <h4 id="card-title">{workout.title}</h4>
+      <p id="card-load"><strong>Load: </strong>{workout.load}</p>
+      <p id="card-reps"><strong>Reps: </strong>{workout.reps}</p>
       {isUpdating ? (
         <form onSubmit={handleUpdateSubmit}>
           <label htmlFor="title">Title:</label>
@@ -98,7 +98,7 @@ const WorkoutDetails = ({ workout, onUpdate }) => {
         </form>
       ) : (
         <>
-          <p>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p>
+          <p id="card-created">Created {formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p>
           {isDeleteAlertVisible && <DeleteAlert isDeleteAlertVisible={isDeleteAlertVisible} setIsDeleteAlertVisible={setIsDeleteAlertVisible} workout={workout} dispatch={dispatch} />}
           <span className='material-symbols-outlined' onClick={handleDeleteClick}>delete</span>
           <button className='update-btn' onClick={handleUpdateClick}>Update</button>

@@ -27,8 +27,8 @@ const DeleteAlert = ({ isDeleteAlertVisible, setIsDeleteAlertVisible, workout, d
         <p>
           Are you sure you want to delete this workout? All workout information will be lost.
         </p>
-        <button onClick={handleNo} id="cancel-no-btn">No</button>
-        <button onClick={handleYes} id="cancel-yes-btn">Yes</button>
+        <button onClick={handleNo} id="delete-no-btn">No</button>
+        <button onClick={handleYes} id="delete-yes-btn">Yes</button>
       </Alert>
     )
   }
