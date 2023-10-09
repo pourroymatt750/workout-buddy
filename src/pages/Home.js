@@ -18,7 +18,7 @@ const Home = () => {
         const json = await response.json()
         dispatch({ type: 'SET_WORKOUTS', payload: json })
       } catch (error) {
-        console.log('Error fetching workouts: ', error)
+        console.log('Error fetching workouts: ', error.message)
       }
     }
     fetchWorkouts()
