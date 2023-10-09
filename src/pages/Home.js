@@ -19,6 +19,7 @@ const Home = () => {
         dispatch({ type: 'SET_WORKOUTS', payload: json })
       } catch (error) {
         console.log('Error fetching workouts: ', error.message)
+        console.log('Response:', await response.text())
       }
     }
     fetchWorkouts()
