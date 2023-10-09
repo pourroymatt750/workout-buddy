@@ -1,5 +1,4 @@
 {
-  "proxy": "https://workout-buddy-backend-chyp.onrender.com/api",
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
