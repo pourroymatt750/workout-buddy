@@ -38,7 +38,7 @@ const WorkoutDetails = ({ workout, onUpdate }) => {
     e.preventDefault();
   
     try {
-      const response = await fetch('https://workout-buddy-backend-chyp.onrender.com/api/workouts/' + workout._id, {
+      const response = await fetch('/api/workouts/' + workout._id, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

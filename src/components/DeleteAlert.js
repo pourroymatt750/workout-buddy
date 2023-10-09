@@ -10,7 +10,7 @@ const DeleteAlert = ({ isDeleteAlertVisible, setIsDeleteAlertVisible, workout, d
   }
 
   const handleYes = async () => {
-    const response = await fetch('https://workout-buddy-backend-chyp.onrender.com/api/workouts/' + workout._id, {
+    const response = await fetch('/api/workouts/' + workout._id, {
       method: 'DELETE'
     })
     const json = await response.json()
