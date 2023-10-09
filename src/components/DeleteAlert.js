@@ -1,11 +1,23 @@
 import { useState } from 'react'
 import Alert from 'react-bootstrap/Alert'
 
-const DeleteAlert = () => {
+const DeleteAlert = ({ isDeleteAlertVisible, setIsDeleteAlertVisible, workout, dispatch }) => {
   const [show, setShow] = useState(true)
 
-  const handleDelete = () => {
-    
+  const handleNo = () => {
+    setShow(false)
+    setIsDeleteAlertVisible(false)
+  }
+
+  const handleYes = async () => {
+    const response = await fetch('/api/workouts/' + workout._id, {
+      method: 'DELETE'
+    })
+    const json = await response.json()
+
+    if (response.ok) {
+      dispatch({type: 'DELETE_WORKOUT', payload: json})
+    }
   }
 
   if (show) {
@@ -15,8 +27,8 @@ const DeleteAlert = () => {
         <p>
           Are you sure you want to delete this workout? All workout information will be lost.
         </p>
-        <button id="cancel-no-btn">No</button>
-        <button id="cancel-yes-btn">Yes</button>
+        <button onClick={handleNo} id="cancel-no-btn">No</button>
+        <button onClick={handleYes} id="cancel-yes-btn">Yes</button>
       </Alert>
     )
   }

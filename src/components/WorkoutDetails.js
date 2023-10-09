@@ -18,14 +18,15 @@ const WorkoutDetails = ({ workout, onUpdate }) => {
   const [isDeleteAlertVisible, setIsDeleteAlertVisible] = useState(false)
 
   const handleDeleteClick = async () => {
-    const response = await fetch('/api/workouts/' + workout._id, {
-      method: 'DELETE'
-    })
-    const json = await response.json()
+    setIsDeleteAlertVisible(true)
+    // const response = await fetch('/api/workouts/' + workout._id, {
+    //   method: 'DELETE'
+    // })
+    // const json = await response.json()
 
-    if (response.ok) {
-      dispatch({type: 'DELETE_WORKOUT', payload: json})
-    }
+    // if (response.ok) {
+    //   dispatch({type: 'DELETE_WORKOUT', payload: json})
+    // }
   }
 
   const handleUpdateClick = () => {
@@ -106,7 +107,7 @@ const WorkoutDetails = ({ workout, onUpdate }) => {
       ) : (
         <>
           <p>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p>
-          {isDeleteAlertVisible && <DeleteAlert />}
+          {isDeleteAlertVisible && <DeleteAlert isDeleteAlertVisible={isDeleteAlertVisible} setIsDeleteAlertVisible={setIsDeleteAlertVisible} workout={workout} dispatch={dispatch} />}
           <span className='material-symbols-outlined' onClick={handleDeleteClick}>delete</span>
           <button className='update-btn' onClick={handleUpdateClick}>Update</button>
         </>
