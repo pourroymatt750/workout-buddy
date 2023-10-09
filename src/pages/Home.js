@@ -11,15 +11,13 @@ const Home = () => {
   useEffect(() => {
     const fetchWorkouts = async () => {
       try {
-        const response = await fetch('/api/workouts')
-        // const response = await fetch('https://workout-buddy-backend-chyp.onrender.com/api/workouts')
+        const response = await fetch('/workouts')
         if (!response.ok) {
           throw new Error('Network response was not okay')
         }
         const json = await response.json()
         dispatch({ type: 'SET_WORKOUTS', payload: json })
       } catch (error) {
-        // console.log('Error fetching workouts: ', error.message)
         if (error instanceof TypeError && error.message === "Failed to fetch") {
           console.log('Network error:', error.message);
         } else {
