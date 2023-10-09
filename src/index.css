@@ -113,7 +113,6 @@ div.error {
 input.error {
   border: 1px solid var(--error);
 }
-
 .update-btn {
   background: var(--primary);
   color: #fff;
@@ -207,4 +206,25 @@ input.error {
   font-size: 110%;
 }
 
-/* M */
+/* Add a media query for screens smaller than 900px */
+@media screen and (max-width: 900px) {
+  .home {
+    display: flex !important;
+    flex-direction: column-reverse !important; 
+    align-items: center !important; 
+  }
+  .workouts {
+    width: 100% !important;
+    margin-top: -14%;
+  }
+  .workout-form {
+    width: 80% !important;
+  }
+}
+
+/* Keep your existing styles for screens larger than 900px */
+.home {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 100px;
+}

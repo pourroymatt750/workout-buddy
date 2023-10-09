@@ -44,7 +44,9 @@ const Home = () => {
             />
           ))}
       </div>
-      <WorkoutForm />
+      <div className="workout-form">
+        <WorkoutForm />
+      </div> 
     </div>
   )
 }
