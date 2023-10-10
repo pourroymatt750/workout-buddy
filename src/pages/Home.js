@@ -1,67 +1,69 @@
-import { useEffect, useState } from "react"
-import { useWorkoutsContext } from '../hooks/useWorkoutsContext'
+import React, { useEffect, useState } from "react";
+import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 
 // components
-import WorkoutDetails from '../components/WorkoutDetails'
-import WorkoutForm from "../components/WorkoutForm"
+import WorkoutDetails from "../components/WorkoutDetails";
+import WorkoutForm from "../components/WorkoutForm";
 
 const Home = () => {
-  const { workouts, dispatch } = useWorkoutsContext()
-  const [loading, setLoading] = useState(true)
+  const { workouts, dispatch } = useWorkoutsContext();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchWorkouts = async () => {
       try {
-        const response = await fetch('https://workout-buddy-backend-chyp.onrender.com/api/workouts')
+        const response = await fetch(
+          "https://workout-buddy-backend-chyp.onrender.com/api/workouts"
+        );
         if (!response.ok) {
-          throw new Error('Network response was not okay')
+          throw new Error("Network response was not okay");
         }
-        const json = await response.json()
-        dispatch({ type: 'SET_WORKOUTS', payload: json })
-        setLoading(false)
+        const json = await response.json();
+        dispatch({ type: "SET_WORKOUTS", payload: json });
+        setLoading(false);
       } catch (error) {
         if (error instanceof TypeError && error.message === "Failed to fetch") {
-          console.log('Network error:', error.message);
+          console.log("Network error:", error.message);
         } else {
-          console.log('Error fetching workouts:', error.message);
+          console.log("Error fetching workouts:", error.message);
         }
-        setLoading(false)
+        setLoading(false);
       }
-    }
-    fetchWorkouts()
-  }, [dispatch])
+    };
+    fetchWorkouts();
+  }, [dispatch]);
 
   const handleUpdateSubmit = (updatedWorkoutData) => {
-    // Update the local state with the updated workout
     const updatedWorkouts = workouts.map((workout) =>
-      workout._id === updatedWorkoutData._id ? updatedWorkoutData : workout,
+      workout._id === updatedWorkoutData._id ? updatedWorkoutData : workout
     );
-    dispatch({ type: 'SET_WORKOUTS', payload: updatedWorkouts });
-  }
+    dispatch({ type: "SET_WORKOUTS", payload: updatedWorkouts });
+  };
 
   return (
     <div className="home">
       {loading ? (
-        <h4>Workouts loading...</h4>
+        <p>Workouts loading...</p>
       ) : (
-      <div>
-      <div className="workouts">
-        {workouts &&
-          workouts.map((workout) => (
-            <WorkoutDetails
-              key={workout._id}
-              workout={workout}
-              onUpdate={handleUpdateSubmit} // Pass the update handler to WorkoutDetails
-            />
-          ))}
-      </div>
-      <div className="workout-form">
-        <WorkoutForm />
-      </div> 
+        <>
+          <div className="workouts">
+            {workouts &&
+              workouts.map((workout) => (
+                <WorkoutDetails
+                  key={workout._id}
+                  workout={workout}
+                  onUpdate={handleUpdateSubmit}
+                />
+              ))}
+          </div>
+          <div className="workout-form">
+            <WorkoutForm />
+          </div>
+        </>
+      )}
     </div>
-    )}
-  </div>
-  )
+  );
+  
 }
 
-export default Home
+export default Home;
