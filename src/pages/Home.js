@@ -13,7 +13,7 @@ const Home = () => {
     const fetchWorkouts = async () => {
       try {
         const response = await fetch(
-          "https://workout-buddy-backend-chyp.onrender.com/api/workouts/api/workouts"
+          "https://workout-buddy-backend-chyp.onrender.com/api/workouts"
         );
         if (!response.ok) {
           throw new Error("Network response was not okay");
