@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useWorkoutsContext } from '../hooks/useWorkoutsContext'
 
 // components
@@ -7,6 +7,7 @@ import WorkoutForm from "../components/WorkoutForm"
 
 const Home = () => {
   const { workouts, dispatch } = useWorkoutsContext()
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchWorkouts = async () => {
@@ -17,12 +18,14 @@ const Home = () => {
         }
         const json = await response.json()
         dispatch({ type: 'SET_WORKOUTS', payload: json })
+        setLoading(false)
       } catch (error) {
         if (error instanceof TypeError && error.message === "Failed to fetch") {
           console.log('Network error:', error.message);
         } else {
           console.log('Error fetching workouts:', error.message);
         }
+        setLoading(false)
       }
     }
     fetchWorkouts()
@@ -38,6 +41,10 @@ const Home = () => {
 
   return (
     <div className="home">
+      {loading ? (
+        <h4>Workouts loading...</h4>
+      ) : (
+      <div>
       <div className="workouts">
         {workouts &&
           workouts.map((workout) => (
@@ -52,6 +59,8 @@ const Home = () => {
         <WorkoutForm />
       </div> 
     </div>
+    )}
+  </div>
   )
 }
 
